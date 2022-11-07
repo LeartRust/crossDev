@@ -1,0 +1,7 @@
+{
+  "name": "crossDevApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
