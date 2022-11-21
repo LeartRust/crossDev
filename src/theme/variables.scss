@@ -197,7 +197,14 @@
    */
 
   .md body {
-    --ion-background-color: #121212;
+    //--ion-background-color: #935151;
+    ion-content{
+      //--background: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+      //--background: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+      //--background: linear-gradient(to bottom, #434343 0%, #222222 100%);
+      //--background: linear-gradient(to bottom, #f83600 0%, #f9d423 100%);
+      --background: linear-gradient(to bottom, #09203f 0%, #0e2a3f 100%);
+    }
     --ion-background-color-rgb: 18,18,18;
 
     --ion-text-color: #ffffff;
