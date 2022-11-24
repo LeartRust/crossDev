@@ -17,8 +17,9 @@ export class HomePage implements OnInit {
 
   ngOnInit() {    
     this.homeService.getAstronauts().subscribe(value => {
-      this.numberAstronauts = value.number;
-      this.astronauts = value.people
+      this.astronauts = value; 
+      console.log("test " +  JSON.stringify(this.astronauts));
+      
       });    
   }
 

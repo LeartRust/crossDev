@@ -7,9 +7,9 @@
 <ion-content>
   <div class="centered">
     <p style="font-size: 1.5rem">
-      Currently in Space: {{numberAstronauts}} People
+      Currently in Space: {{astronauts.number}} People
     </p>
-    <div class="astronaut" *ngFor="let astronaut of astronauts">
+    <div class="astronaut" *ngFor="let astronaut of astronauts.people">
       <div>{{astronaut.name}}</div>
     </div>
   </div>
