@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {Profile} from '../models/profile.models'
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -8,11 +10,29 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ProfilePage implements OnInit {
 
-  constructor(private httpClient: HttpClient) { }
+
+  public profile: Profile;
+  private profileFormData: FormGroup
+
+  constructor(private httpClient: HttpClient) {
+   }
 
   ngOnInit() {
-    //this.httpClient.post('https://ionicangular-crossdev-default-rtdb.europe-west1.firebasedatabase.app/test.json', '{"name":"John", "age":30, "car":null}')
-    //.subscribe((response) => console.log(response));
+    this.profileFormData = new FormGroup({
+      name: new FormControl,
+      address: new FormControl,
+      email: new FormControl
+    });
+
+  }
+
+  changeProfile(){
+    console.log(this.profileFormData.value);
+    
+    this.httpClient.post('https://ionicangular-crossdev-default-rtdb.europe-west1.firebasedatabase.app/profile.json', `{"name": "${this.profileFormData.value.name} ", "address": "${this.profileFormData.value.address}", "email": "${this.profileFormData.value.email}" }`)
+    .subscribe((response) => console.log(response));
+
+    
   }
 
 }
