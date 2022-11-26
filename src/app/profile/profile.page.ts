@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import {Profile} from '../models/profile.models'
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Validators } from "@angular/forms";
+import { ToastController } from '@ionic/angular';
+import { ProfileService } from '../services/profile.service';
 
 @Component({
   selector: 'app-profile',
@@ -13,30 +15,66 @@ export class ProfilePage implements OnInit {
 
   public editStatus: boolean = false;
   public editText: String = "Edit Profile";
-  public profile: Profile;
+  public profile: Profile = {name: "", address: "", email: "", timestamp: ""};
   private profileFormData: FormGroup
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private toastController: ToastController, protected profileService: ProfileService) {
    }
 
+
+   
   ngOnInit() {
     this.profileFormData = new FormGroup({
-      name: new FormControl,
-      address: new FormControl,
-      email: new FormControl
+      name: new FormControl('', Validators.compose([
+        Validators.minLength(5),
+        Validators.required,
+      ])),
+      address: new FormControl('', Validators.compose([
+        Validators.minLength(5),
+        Validators.required,
+      ])),
+      email: new FormControl('', Validators.compose([
+        Validators.minLength(5),
+        Validators.required,
+      ]))
     });
 
+    this.getProfile();
+    
+  }
+
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Please fill out the form correctly!',
+      duration: 1500,
+      position: 'top'
+    });
+
+    await toast.present();
   }
 
   changeProfile(){
     console.log(this.profileFormData.value);
     
-    this.httpClient.post('https://ionicangular-crossdev-default-rtdb.europe-west1.firebasedatabase.app/profile.json', `{"name": "${this.profileFormData.value.name} ", "address": "${this.profileFormData.value.address}", "email": "${this.profileFormData.value.email}" }`)
-    .subscribe((response) => console.log(response));
+    if (!this.profileFormData.valid) {
+      this.presentToast();
+      return false;
 
+    } else {
+      this.profileService.postProfile(this.profileFormData.value.name, this.profileFormData.value.address, this.profileFormData.value.email);
+      this.getProfile();
+      this.editToggle();
+    }
     
+  }
 
-    this.editToggle();
+  getProfile(){
+        this.profileService.getProfile().subscribe((response) => {
+        console.log("GET: " + JSON.stringify(response))
+        this.profile = response[Object.keys(response)[0]];
+        console.log("TEST-LOG" + this.profile.name);
+    });
   }
 
   editToggle(){
