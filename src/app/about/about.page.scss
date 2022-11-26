@@ -1,5 +1,5 @@
 .dev-info{
-    font-size: 20px;
+    font-size: 1.5rem;
     //max-width: 400px;
     padding: 10px;
     text-align: center;
@@ -21,7 +21,27 @@ img{
 }
 
 .name{
-    font-size: 30px;
+    font-size: 2rem;
     font-weight: bold;
     font-style: italic;
+}
+
+
+@media (max-width: 768px) {
+    .dev-info{
+        font-size: 1.5rem;
+        //max-width: 400px;
+        padding: 10px;
+        text-align: center;
+        margin: 15px;
+        display: inline-block; 
+        vertical-align: top;
+        max-width: 80%;
+    }
+    img{
+        margin: 10px 0 0 0;
+        border: 4px solid #000;
+        max-height: 50vw;
+        margin: 0vw;
+    }
 }

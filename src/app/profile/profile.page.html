@@ -5,25 +5,63 @@
 </ion-header>
 
 <ion-content>
-  <div class="profileForm">
-    <form [formGroup] = "profileFormData" (ngSubmit)="changeProfile()">
-      <ion-item lines="full">
-        <ion-label>Name</ion-label>
-        <ion-input type="text"  formControlName = "name" required></ion-input>
-      </ion-item>
-      <ion-item lines="full">
-        <ion-label>Address</ion-label>
-        <ion-input type="text" formControlName = "address" required></ion-input>
-      </ion-item>
-      <ion-item lines="full">
-        <ion-label>Email</ion-label>
-        <ion-input type="text" formControlName = "email" required></ion-input>
-      </ion-item>
-      <ion-row>
-        <ion-col>
-          <ion-button type="submit" color="success" expand="block">Change</ion-button>
-        </ion-col>
-      </ion-row>
-    </form>
+  
+  <div>
+    <ion-grid>
+      <ion-row class="ion-justify-content-center">
+        <ion-col class="ion-text-center">
+        <ion-button (click)="editToggle()" color="warning" expand="block" style="text-align: center; display: inline-block;">
+            {{editText}}
+        </ion-button >
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+    <div [ngClass]="editStatus ? 'invisible' : 'visible'">
+      <ion-grid>
+        <ion-row class="ion-justify-content-center">
+          <ion-col class="ion-text-center">
+            <div class="ion-margin">1 of 3</div>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-col class="ion-text-center">
+            <div class="ion-margin">2 of 3</div>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-col class="ion-text-center">
+            <div class="ion-margin">3 of 3</div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+
+    <div [ngClass]="editStatus ? 'visible' : 'invisible'">
+      <div class="profileForm">
+        <form [formGroup] = "profileFormData" (ngSubmit)="changeProfile()">
+          <ion-item lines="full">
+            <ion-label>Name:</ion-label>
+            <ion-input type="text"  formControlName = "name" required></ion-input>
+          </ion-item>
+          <ion-item lines="full">
+            <ion-label>Address:</ion-label>
+            <ion-input type="text" formControlName = "address" required></ion-input>
+          </ion-item>
+          <ion-item lines="full">
+            <ion-label>Email:</ion-label>
+            <ion-input type="text" formControlName = "email" required></ion-input>
+          </ion-item>
+          <ion-row>
+            <ion-col>
+              <ion-button type="submit" color="success" expand="block">Change</ion-button>
+            </ion-col>
+          </ion-row>
+        </form>
+      </div>
+    </div>
+
   </div>
+
 </ion-content>

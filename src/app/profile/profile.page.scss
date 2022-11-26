@@ -1,7 +1,12 @@
 .profileForm{
     max-width: 40rem;
-    min-width: 20rem;
+    min-width: 15rem;
     margin: auto;
     width: 50%;
     margin-top: 2rem;
+}
+
+.invisible{
+    display: none;
+    visibility: hidden;
 }

@@ -11,6 +11,8 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 export class ProfilePage implements OnInit {
 
 
+  public editStatus: boolean = false;
+  public editText: String = "Edit Profile";
   public profile: Profile;
   private profileFormData: FormGroup
 
@@ -33,6 +35,17 @@ export class ProfilePage implements OnInit {
     .subscribe((response) => console.log(response));
 
     
+
+    this.editToggle();
+  }
+
+  editToggle(){
+    this.editStatus = !this.editStatus;
+    if(this.editStatus == true){
+      this.editText = "Show Profile";
+    }else{
+      this.editText = "Edit Profile";
+    }
   }
 
 }
