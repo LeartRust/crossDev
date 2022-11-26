@@ -16,7 +16,7 @@ export class ProfilePage implements OnInit {
   public editStatus: boolean = false;
   public editText: String = "Edit Profile";
   public profile: Profile = {name: "", address: "", email: "", timestamp: ""};
-  private profileFormData: FormGroup
+  private profileForm: FormGroup
 
   constructor(private toastController: ToastController, protected profileService: ProfileService) {
    }
@@ -24,7 +24,7 @@ export class ProfilePage implements OnInit {
 
    
   ngOnInit() {
-    this.profileFormData = new FormGroup({
+    this.profileForm = new FormGroup({
       name: new FormControl('', Validators.compose([
         Validators.minLength(5),
         Validators.required,
@@ -55,16 +55,16 @@ export class ProfilePage implements OnInit {
   }
 
   changeProfile(){
-    console.log(this.profileFormData.value);
+    console.log(this.profileForm.value);
     
-    if (!this.profileFormData.valid) {
+    if (!this.profileForm.valid) {
       this.presentToast();
       return false;
 
     } else {
-      this.profileService.postProfile(this.profileFormData.value.name, this.profileFormData.value.address, this.profileFormData.value.email);
-      this.getProfile();
+      this.profileService.postProfile(this.profileForm.value.name, this.profileForm.value.address, this.profileForm.value.email).subscribe((response) => this.getProfile());
       this.editToggle();
+      this.profileForm.reset()
     }
     
   }
@@ -73,7 +73,6 @@ export class ProfilePage implements OnInit {
         this.profileService.getProfile().subscribe((response) => {
         console.log("GET: " + JSON.stringify(response))
         this.profile = response[Object.keys(response)[0]];
-        console.log("TEST-LOG" + this.profile.name);
     });
   }
 

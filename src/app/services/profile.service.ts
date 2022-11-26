@@ -15,7 +15,9 @@ export class ProfileService {
   }
 
   public postProfile(name: String, address: String, email: String) {
-    return this.httpClient.post('https://ionicangular-crossdev-default-rtdb.europe-west1.firebasedatabase.app/profiles.json', `{"name": "${name} ", "address": "${address}", "email": "${email}", "timestamp": "${Math.floor(Date.now() / 1000)}" }`);
+    console.log("POST" + name + " " + address + " " +email);
+    
+    return this.httpClient.post('https://ionicangular-crossdev-default-rtdb.europe-west1.firebasedatabase.app/profiles.json', `{"name": "${name}", "address": "${address}", "email": "${email}", "timestamp": "${Math.floor(Date.now() / 1000)}"}`);
   }
 
 

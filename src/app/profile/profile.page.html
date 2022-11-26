@@ -40,7 +40,7 @@
 
     <div [ngClass]="editStatus ? 'visible' : 'invisible'">
       <div class="profileForm">
-        <form [formGroup] = "profileFormData" (ngSubmit)="changeProfile()">
+        <form [formGroup] = "profileForm" (ngSubmit)="changeProfile()">
           <ion-item lines="full">
             <ion-label>Name:</ion-label>
             <ion-input type="text"  formControlName = "name" required></ion-input>
