@@ -18,13 +18,13 @@ export class ProfilePage implements OnInit {
   public profile: Profile = {name: "", address: "", email: "", timestamp: ""};
   private profileForm: FormGroup
 
-  constructor(private toastController: ToastController, protected profileService: ProfileService) {
+  constructor(private toastController: ToastController, protected profileService: ProfileService, private formBuilder: FormBuilder) {
    }
 
 
    
   ngOnInit() {
-    this.profileForm = new FormGroup({
+    this.profileForm = this.formBuilder.group({
       name: new FormControl('', Validators.compose([
         Validators.minLength(5),
         Validators.required,
