@@ -10,8 +10,7 @@ import {HomeService} from '../services/home.service'
 })
 export class HomePage implements OnInit {
 
-  public astronauts: Array<Astronaut> = new Array<Astronaut>();
-  public numberAstronauts: number;
+  public astronauts: Astronaut;
   
   constructor(protected homeService: HomeService) { }
 

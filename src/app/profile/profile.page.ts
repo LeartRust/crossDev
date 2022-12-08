@@ -16,7 +16,7 @@ export class ProfilePage implements OnInit {
   public editStatus: boolean = false;
   public editText: String = "Edit Profile";
   public profile: Profile = {name: "", address: "", email: "", timestamp: ""};
-  private profileForm: FormGroup
+  public profileForm: FormGroup
 
   constructor(private toastController: ToastController, protected profileService: ProfileService, private formBuilder: FormBuilder) {
    }
